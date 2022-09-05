@@ -13,21 +13,9 @@ export class App extends Component {
     bad: 0
   }
 
-  leaveGoodFeedback = () => {
+  leaveFeedback = (label) => {
     this.setState(prevState => ({
-      good: prevState.good + 1
-    }))
-  }
-
-  leaveNeutralFeedback = () => {
-    this.setState(prevState => ({
-      neutral: prevState.neutral + 1
-    }))
-  }
-
-  leaveBadFeedback = () => {
-    this.setState(prevState => ({
-      bad: prevState.bad + 1
+      [label]: prevState[label] + 1
     }))
   }
 
@@ -53,9 +41,8 @@ export class App extends Component {
     <Container>        
       <Section title={"Please leave feedback"}>
         <FeedbackOptions
-          onLeaveGoodFeedback={this.leaveGoodFeedback}
-          onLeaveNeutralFeedback={this.leaveNeutralFeedback}
-          onLeaveBadFeedback={this.leaveBadFeedback}
+          options={Object.keys(this.state)}  
+          onLeaveFeedback={this.leaveFeedback}          
         />
       </Section>
       <Section title={"Statistics"}>
@@ -72,6 +59,5 @@ export class App extends Component {
       </Section>
     </Container>
   );
-  }
-  
+  }  
 };

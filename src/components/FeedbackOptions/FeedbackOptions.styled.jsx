@@ -5,11 +5,14 @@ export const Wrapper = styled.div`
 `;
 
 export const OptionButton = styled.button`
-  width: 100px;
-  margin-left: 10px;
+  width: 100px;  
   padding: 10px;
   font-weight: bold;
   text-transform: capitalize;
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.25),
               0 10px 10px rgba(0, 0, 0, 0.25);
+
+    &:not(:first-child) {
+      margin-left: 10px;
+    }
 `;

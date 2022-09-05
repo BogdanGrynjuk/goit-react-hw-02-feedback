@@ -1,20 +1,25 @@
 import PropTypes from 'prop-types';
+import { nanoid } from 'nanoid';
 
 import { Wrapper, OptionButton } from './FeedbackOptions.styled';
 
-
-export const FeedbackOptions = ({onLeaveGoodFeedback, onLeaveNeutralFeedback, onLeaveBadFeedback}) => {
+export const FeedbackOptions = ({ options, onLeaveFeedback }) => {
   return (
     <Wrapper>
-      <OptionButton type='button' onClick={onLeaveGoodFeedback}>good</OptionButton>
-      <OptionButton type='button' onClick={onLeaveNeutralFeedback}>geutral</OptionButton>
-      <OptionButton type='button' onClick={onLeaveBadFeedback}>bad</OptionButton>
+      {options.map(option => (
+        <OptionButton
+          key={nanoid()}
+          type='button'
+          onClick={()=> onLeaveFeedback(option)}
+        >
+          {option}
+        </OptionButton>
+      ))}      
     </Wrapper>
   );
 }
 
 FeedbackOptions.propTypes = {
-  onLeaveGoodFeedback: PropTypes.func.isRequired,
-  onLeaveNeutralFeedback: PropTypes.func.isRequired,
-  onLeaveBadFeedback: PropTypes.func.isRequired,
+  options: PropTypes.arrayOf(PropTypes.string.isRequired),  
+  onLeaveFeedback: PropTypes.func.isRequired,  
 }
